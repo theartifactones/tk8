@@ -1,0 +1,14 @@
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 50
+
+servo_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+    - base_servo_joint
+    - end_servo_joint
+  constraints:
+    goal_time: 0.5
+    stopped_velocity_tolerance: 0.05
+  stop_trajectory_duration: 0.5
+  state_publish_rate: 25

@@ -1,0 +1,82 @@
+<launch>
+
+  <!-- Arguments -->
+  <arg name="model" default="tk8" doc="Name of the robot model"/>
+  <arg name="urdf_file" default="$(find tk8)/urdf/tk8.urdf" doc="Path to the URDF file"/>
+  <arg name="world_file" default="$(find gazebo_ros)/worlds/empty_world.world" doc="Path to the Gazebo world file"/>
+  <arg name="paused" default="false" doc="Start Gazebo paused"/>
+  <arg name="use_sim_time" default="true" doc="Use Gazebo's simulation time"/>
+  <arg name="gui" default="true" doc="Launch Gazebo GUI client"/>
+  <arg name="headless" default="false" doc="Run Gazebo without GUI"/>
+  <arg name="debug" default="false" doc="Start gzserver in debug mode"/>
+  <arg name="verbose" default="false" doc="Run Gazebo in verbose mode"/>
+  <arg name="respawn_gazebo" default="false"/>
+  <!-- arg name="use_gui" default="true" doc="Use Joint State Publisher GUI - Likely not needed with ros_control"/ -->
+  <arg name="start_teleop" default="false" doc="Start the servo teleop keyboard node"/>
+  <arg name="rviz" default="true" doc="Launch RViz"/>
+  <arg name="rviz_config_file" default="$(find tk8)/rviz/tk8_default.rviz" doc="Path to the RViz config file"/>
+
+  <!-- Initial Pose -->
+  <arg name="x_pos" default="0.0"/>
+  <arg name="y_pos" default="0.0"/>
+  <arg name="z_pos" default="0.1"/>
+  <arg name="roll" default="0.0"/>
+  <arg name="pitch" default="0.0"/>
+  <arg name="yaw" default="0.0"/>
+
+  <!-- Load controller settings BEFORE spawning controllers -->
+  <rosparam file="$(find tk8)/config/tk8_controllers.yaml" command="load"/>
+
+  <!-- Load the URDF into the ROS Parameter Server -->
+  <param name="robot_description" command="$(find xacro)/xacro $(arg urdf_file)" />
+
+  <!-- Set use_sim_time parameter -->
+  <param name="/use_sim_time" value="$(arg use_sim_time)"/>
+
+  <!-- Launch Gazebo -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(arg world_file)"/>
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="headless" value="$(arg headless)"/>
+    <arg name="debug" value="$(arg debug)"/>
+    <arg name="verbose" value="$(arg verbose)"/>
+    <arg name="respawn_gazebo" value="$(arg respawn_gazebo)"/>
+  </include>
+
+  <!-- Spawn the robot model in Gazebo -->
+  <!-- This must happen BEFORE spawning controllers -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-urdf -model $(arg model) -param robot_description
+              -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos)
+              -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)"/>
+
+  <!-- Load the controllers -->
+  <!-- This connects to the /controller_manager service provided by gazebo_ros_control plugin -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" args="joint_state_controller servo_controller"/>
+
+  <!-- Joint State Publisher - REMOVED/COMMENTED OUT -->
+  <!-- Typically not needed when using joint_state_controller from ros_control -->
+  <!--
+  <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher">
+    <param name="use_gui" value="$(arg use_gui)"/>
+    <param name="rate" value="50"/>
+  </node>
+  -->
+
+  <!-- Robot state publisher -->
+  <!-- Reads /joint_states (published by joint_state_controller) and publishes TF -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen"/>
+
+  <!-- Optional Teleop Node -->
+  <node name="servo_teleop_keyboard" pkg="tk8" type="teleop_robot.py"
+        output="screen" launch-prefix="xterm -e" if="$(arg start_teleop)">
+  </node>
+
+  <!-- Start RViz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rviz_config_file)" if="$(arg rviz)" output="screen"/>
+
+</launch>
