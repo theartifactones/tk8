@@ -7,8 +7,7 @@ import termios
 from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 from std_msgs.msg import Header
 
-# --- Lấy giá trị từ URDF/YAML ---
-# Tên các khớp được điều khiển bởi controller này
+# Tên các khớp 
 JOINT_NAMES = ["base_servo_joint", "end_servo_joint"]
 
 # Topic command của controller (bao gồm cả namespace)
@@ -18,17 +17,16 @@ CONTROLLER_TOPIC = "/servo_controller/command"
 BASE_SERVO_STEP = 0.1  # Radian thay đổi mỗi lần nhấn phím cho khớp base
 END_SERVO_STEP = 0.1   # Radian thay đổi mỗi lần nhấn phím cho khớp end
 
-# Giới hạn khớp (lấy từ URDF)
+# Giới hạn khớp
 BASE_SERVO_MIN = 0.0
 BASE_SERVO_MAX = 3.14159
 END_SERVO_MIN = 0.0
 END_SERVO_MAX = 3.14159
 
 # Thời gian để đạt được điểm quỹ đạo tiếp theo (giây)
-# Giá trị nhỏ làm cho chuyển động nhạy hơn
 TIME_TO_REACH_POINT = 0.2
 
-# --- Hàm đọc phím (giống code trước) ---
+# --- Hàm đọc phím ---
 def get_key():
     fd = sys.stdin.fileno()
     old_settings = termios.tcgetattr(fd)
@@ -72,7 +70,7 @@ def servo_teleop():
     print("  1: quit")
     print("  2: reset")
 
-    rate = rospy.Rate(10) # Tần suất gửi lệnh (không cần quá cao)
+    rate = rospy.Rate(10) # Tần suất gửi lệnh 
 
     while not rospy.is_shutdown():
         key = get_key()
@@ -128,11 +126,9 @@ def servo_teleop():
 
             rospy.loginfo("Đang gửi: Base=%.2f rad, End=%.2f rad", current_base_pos, current_end_pos)
 
-        # Không cần rate.sleep() vì get_key() sẽ đợi
 
-if __name__ == '__main__': # Corrected from 'if name == main:' to 'if __name__ == '__main__':
+if __name__ == '__main__':
     try:
-        # Lưu cài đặt terminal cũ (lưu ở đây là đủ, không cần trong get_key vì đã có finally ở đó)
         original_settings = termios.tcgetattr(sys.stdin)
         servo_teleop()
     except rospy.ROSInterruptException:
