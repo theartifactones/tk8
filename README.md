@@ -1,4 +1,5 @@
 Mid_term_ros
+
 Thiết kế một robot gồm có xe và tay máy. Xe được điều khiển bằng cơ chế điều hướng Ackermann Steering (về sau đổi thành Differential Drive). Tay máy hai khớp gồm 2 khớp quay. Trên robot có gắn ba loại cảm biến: Lidar, Camera và Encoder.
 Yêu cầu các gói
 ROS Noetic
