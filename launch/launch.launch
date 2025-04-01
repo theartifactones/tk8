@@ -15,8 +15,6 @@
   <arg name="respawn_gazebo" default="false"/>
   <arg name="start_teleop" default="false" doc="Start the servo teleop keyboard node"/>
   <arg name="rviz" default="true" doc="Launch RViz"/>
-  <!-- RViz configuration file path -->
-  <arg name="rviz_config_file" default="$(find tk8)/rviz/tk8_default.rviz" doc="Path to the RViz config file"/>
 
   <!-- Initial Pose Arguments for spawning the robot -->
   <arg name="x_pos" default="0.0"/>
@@ -58,7 +56,9 @@
         output="screen" launch-prefix="xterm -e" if="$(arg start_teleop)">
   </node>
 
-  <!-- Start RViz with the specified configuration file -->
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rviz_config_file)" if="$(arg rviz)" output="screen"/>
+  <!-- RViz configuration file path -->
+  <arg name="rviz_config_file" default="$(find tk8)/tk8_default.rviz" doc="Path to the RViz config file"/>
+
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(arg rviz_config_file)" if="$(arg rviz)" output="screen"/>
 
 </launch>
