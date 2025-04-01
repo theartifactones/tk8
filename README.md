@@ -47,9 +47,9 @@ Cài đặt bổ sung các package nếu chưa có
 
 roslaunch tk8 launch.launch
 
-mở terminal mới và chạy rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+mở terminal mới và chạy rosrun teleop_twist_keyboard teleop_twist_keyboard.py để điều khiển di chuyển
 
-tiếp tục mở 1 terminal mới khác và chạy rosrun tk8 servo_teleop_keyboard.py
+tiếp tục mở 1 terminal mới khác và chạy rosrun tk8 servo_teleop_keyboard.py để điều khiển tay máy
 
 **3. Đọc riêng các giá trị cảm biến**
 
