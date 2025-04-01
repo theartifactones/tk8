@@ -7,6 +7,7 @@ Panels:
         - /Global Options1
         - /Status1
         - /Grid1
+        - /Camera1
       Splitter Ratio: 0.5
     Tree Height: 355
   - Class: rviz/Selection
@@ -180,7 +181,7 @@ Visualization Manager:
         LaserScan: true
         RobotModel: true
         TF: true
-        Value: true
+        Value: false
       Zoom Factor: 1
     - Alpha: 1
       Autocompute Intensity Bounds: true
@@ -238,7 +239,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 10
+      Distance: 22.466079711914062
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
