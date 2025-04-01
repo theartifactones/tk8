@@ -2,485 +2,211 @@
 <!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
      Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
-<robot
-  name="tk8">
-  <link
-    name="base_link">
+<robot name="tk8">
+  <link name="base_link">
     <inertial>
-      <origin
-        xyz="-0.00557264023375181 -0.0960602615045691 0.0594169936927835"
-        rpy="0 0 0" />
-      <mass
-        value="0.190548593408447" />
-      <inertia
-        ixx="0.000412726597714719"
-        ixy="2.90219947110223E-06"
-        ixz="9.47643877840415E-06"
-        iyy="0.000171360224234566"
-        iyz="-1.29717645091752E-05"
-        izz="0.000480531579802367" />
+      <origin xyz="-0.00557264023375181 -0.0960602615045691 0.0594169936927835" rpy="0 0 0" />
+      <mass value="0.190548593408447" />
+      <inertia ixx="0.000412726597714719" ixy="2.90219947110223E-06" ixz="9.47643877840415E-06" iyy="0.000171360224234566" iyz="-1.29717645091752E-05" izz="0.000480531579802367" />
     </inertial>
     <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://tk8/meshes/base_link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry><mesh filename="package://tk8/meshes/base_link.STL" /></geometry>
+      <material name=""><color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" /></material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry><mesh filename="package://tk8/meshes/base_link.STL" /></geometry>
+    </collision>
+  </link>
+
+  <link name="lidar_link">
+    <inertial>
+      <origin xyz="0 0 0.015" rpy="0 0 0" />
+      <mass value="0.00942477796076938" />
+      <inertia ixx="9.42477796076938E-07" ixy="-1.67504074041988E-23" ixz="-4.8503981591486E-25" iyy="9.42477796076938E-07" iyz="2.87319053451299E-23" izz="4.71238898038469E-07" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry><mesh filename="package://tk8/meshes/lidar_link.STL" /></geometry>
+      <material name=""><color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
       </material>
     </visual>
     <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://tk8/meshes/base_link.STL" />
-      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry><mesh filename="package://tk8/meshes/lidar_link.STL" /></geometry>
     </collision>
   </link>
-  <link
-    name="lidar_link">
-    <inertial>
-      <origin
-        xyz="0 0 0.015"
-        rpy="0 0 0" />
-      <mass
-        value="0.00942477796076938" />
-      <inertia
-        ixx="9.42477796076938E-07"
-        ixy="-1.67504074041988E-23"
-        ixz="-4.8503981591486E-25"
-        iyy="9.42477796076938E-07"
-        iyz="2.87319053451299E-23"
-        izz="4.71238898038469E-07" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://tk8/meshes/lidar_link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://tk8/meshes/lidar_link.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="lidar_joint"
-    type="fixed">
-    <origin
-      xyz="0.0023927 -0.01 0.045791"
-      rpy="0 0 0" />
-    <parent
-      link="base_link" />
-    <child
-      link="lidar_link" />
-    <axis
-      xyz="0 0 0" />
+  <joint name="lidar_joint" type="fixed">
+    <origin xyz="0.00239 -0.01 0.04579" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="lidar_link" />
+    <axis xyz="0 0 0" />
   </joint>
-  <link
-    name="base_servo_link">
+
+  <link name="base_servo_link">
     <inertial>
-      <origin
-        xyz="-8.47575481862928E-05 0.00613867182062955 0.101645028379344"
-        rpy="0 0 0" />
-      <mass
-        value="0.049853330030012" />
-      <inertia
-        ixx="6.4016554545644E-05"
-        ixy="7.01744999482795E-09"
-        ixz="-2.86201077983955E-09"
-        iyy="5.4721785623129E-05"
-        iyz="2.3438670066473E-06"
-        izz="1.31872815085554E-05" />
+      <origin xyz="-8.4e-05 0.0061 0.1016" rpy="0 0 0" />
+      <mass value="0.04985" />
+      <inertia ixx="6.4e-05" ixy="7.0e-09" ixz="-2.8e-09" iyy="5.4e-05" iyz="2.3e-06" izz="1.3e-05" />
     </inertial>
     <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://tk8/meshes/base_servo_link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry><mesh filename="package://tk8/meshes/base_servo_link.STL" /></geometry>
+      <material name=""><color rgba="0.79 0.82 0.93 1" /></material>
     </visual>
     <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://tk8/meshes/base_servo_link.STL" />
-      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry><mesh filename="package://tk8/meshes/base_servo_link.STL" /></geometry>
     </collision>
   </link>
-  <joint
-    name="base_servo_joint"
-    type="revolute">
-    <origin
-      xyz="-0.031274 -0.092587 0.11109"
-      rpy="0 0 0" />
-    <parent
-      link="base_link" />
-    <child
-      link="base_servo_link" />
-    <axis
-      xyz="0 0 -1" />
-    <limit
-      lower="0"
-      upper="3.1416"
-      effort="1"
-      velocity="1.5" />
+  <joint name="base_servo_joint" type="revolute">
+    <origin xyz="-0.03127 -0.09258 0.11109" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="base_servo_link" />
+    <axis xyz="0 0 -1" />
+    <limit lower="0" upper="3.1416" effort="1" velocity="1.5" />
   </joint>
-  <link
-    name="end_servo_link">
+
+  <link name="end_servo_link">
     <inertial>
-      <origin
-        xyz="0.0101511961259593 -0.151372068018228 -0.0443008415059337"
-        rpy="0 0 0" />
-      <mass
-        value="0.0688297822617074" />
-      <inertia
-        ixx="6.90250226109047E-05"
-        ixy="3.07495280191079E-09"
-        ixz="1.10510643833784E-07"
-        iyy="2.75247334453785E-05"
-        iyz="1.54874314690935E-08"
-        izz="5.21114000536643E-05" />
+      <origin xyz="0.0101 -0.1513 -0.0443" rpy="0 0 0" />
+      <mass value="0.06883" />
+      <inertia ixx="6.9e-05" ixy="3.0e-09" ixz="1.1e-07" iyy="2.7e-05" iyz="1.5e-08" izz="5.2e-05" />
     </inertial>
     <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://tk8/meshes/end_servo_link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry><mesh filename="package://tk8/meshes/end_servo_link.STL" /></geometry>
+      <material name=""><color rgba="0.79 0.82 0.93 1" /></material>
     </visual>
     <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://tk8/meshes/end_servo_link.STL" />
-      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry><mesh filename="package://tk8/meshes/end_servo_link.STL" /></geometry>
     </collision>
   </link>
-  <joint
-    name="end_servo_joint"
-    type="revolute">
-    <origin
-      xyz="-0.00015257 0.03865 0.12837"
-      rpy="-1.5708 0 0.00071232" />
-    <parent
-      link="base_servo_link" />
-    <child
-      link="end_servo_link" />
-    <axis
-      xyz="0 0 -1" />
-    <limit
-      lower="0"
-      upper="3.1416"
-      effort="1"
-      velocity="1.5" />
+  <joint name="end_servo_joint" type="revolute">
+    <origin xyz="-0.00015 0.03865 0.12837" rpy="-1.5708 0 0.00071" />
+    <parent link="base_servo_link" />
+    <child link="end_servo_link" />
+    <axis xyz="0 0 -1" />
+    <limit lower="0" upper="3.1416" effort="1" velocity="1.5" />
   </joint>
-  <link
-    name="camera_link">
+
+  <link name="camera_link">
     <inertial>
-      <origin
-        xyz="1.04083408558608E-17 0.00750000000000001 0.00499999999999995"
-        rpy="0 0 0" />
-      <mass
-        value="0.003" />
-      <inertia
-        ixx="8.12500000000001E-08"
-        ixy="1.32155027552417E-23"
-        ixz="-3.04239115936089E-24"
-        iyy="1.25E-07"
-        iyz="6.22513727755269E-24"
-        izz="1.5625E-07" />
+      <origin xyz="0 0.0075 0.005" rpy="0 0 0" />
+      <mass value="0.003" />
+      <inertia ixx="8.1e-08" ixy="0" ixz="0" iyy="1.2e-07" iyz="0" izz="1.5e-07" />
     </inertial>
     <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://tk8/meshes/camera_link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry><mesh filename="package://tk8/meshes/camera_link.STL" /></geometry>
+      <material name=""><color rgba="0.79 0.82 0.93 1" /></material>
     </visual>
     <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://tk8/meshes/camera_link.STL" />
-      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry><mesh filename="package://tk8/meshes/camera_link.STL" /></geometry>
     </collision>
   </link>
-  <joint
-    name="camera_joint"
-    type="fixed">
-    <origin
-      xyz="0.0245 -0.1798 -0.051983"
-      rpy="1.5708 0 0" />
-    <parent
-      link="end_servo_link" />
-    <child
-      link="camera_link" />
-    <axis
-      xyz="0 0 0" />
+  <joint name="camera_joint" type="fixed">
+    <origin xyz="0.0245 -0.1798 -0.05198" rpy="1.5708 0 0" />
+    <parent link="end_servo_link" />
+    <child link="camera_link" />
+    <axis xyz="0 0 0" />
   </joint>
-  <link
-    name="fr_link">
+
+  <link name="fr_link">
     <inertial>
-      <origin
-        xyz="-6.93889390390723E-18 -1.38777878078145E-17 0.00800000000000001"
-        rpy="0 0 0" />
-      <mass
-        value="0.0537442846179065" />
-      <inertia
-        ixx="2.10387038973688E-05"
-        ixy="-6.28700750966174E-22"
-        ixz="-1.83048962780235E-20"
-        iyy="2.10387038973688E-05"
-        iyz="-3.57488326971055E-21"
-        izz="3.92583949923622E-05" />
+      <origin xyz="0 0 0.008" rpy="0 0 0" />
+      <mass value="0.05374" />
+      <inertia ixx="2.1e-05" ixy="0" ixz="0" iyy="2.1e-05" iyz="0" izz="3.9e-05" />
     </inertial>
     <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://tk8/meshes/fr_link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry><mesh filename="package://tk8/meshes/fr_link.STL" /></geometry>
+      <material name=""><color rgba="0.79 0.82 0.93 1" /></material>
     </visual>
     <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://tk8/meshes/fr_link.STL" />
-      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry><mesh filename="package://tk8/meshes/fr_link.STL" /></geometry>
     </collision>
   </link>
-  <joint
-    name="fr_joint"
-    type="continuous">
-    <origin
-      xyz="0.083303 -0.032 0.031791"
-      rpy="1.5708 0 -1.5708" />
-    <parent
-      link="base_link" />
-    <child
-      link="fr_link" />
-    <axis
-      xyz="0 0 1" />
-    <dynamics
-      friction="0.4" />
+  <joint name="fr_joint" type="continuous">
+    <origin xyz="0.0833 -0.032 0.03179" rpy="1.5708 0 -1.5708" />
+    <parent link="base_link" />
+    <child link="fr_link" />
+    <axis xyz="0 0 1" />
+    <dynamics friction="0.4" />
   </joint>
-  <link
-    name="fl_link">
+
+  <link name="fl_link">
     <inertial>
-      <origin
-        xyz="6.93889390390723E-18 0 -0.00799999999999999"
-        rpy="0 0 0" />
-      <mass
-        value="0.0537442846179064" />
-      <inertia
-        ixx="2.10387038973689E-05"
-        ixy="-1.09944721888074E-21"
-        ixz="-3.45402768691346E-20"
-        iyy="2.10387038973689E-05"
-        iyz="-1.96883662322011E-21"
-        izz="3.92583949923622E-05" />
+      <origin xyz="0 0 -0.008" rpy="0 0 0" />
+      <mass value="0.05374" />
+      <inertia ixx="2.1e-05" ixy="0" ixz="0" iyy="2.1e-05" iyz="0" izz="3.9e-05" />
     </inertial>
     <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://tk8/meshes/fl_link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry><mesh filename="package://tk8/meshes/fl_link.STL" /></geometry>
+      <material name=""><color rgba="0.79 0.82 0.93 1" /></material>
     </visual>
     <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://tk8/meshes/fl_link.STL" />
-      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry><mesh filename="package://tk8/meshes/fl_link.STL" /></geometry>
     </collision>
   </link>
-  <joint
-    name="fl_joint"
-    type="continuous">
-    <origin
-      xyz="-0.078697 -0.032 0.031791"
-      rpy="1.5708 0 -1.5708" />
-    <parent
-      link="base_link" />
-    <child
-      link="fl_link" />
-    <axis
-      xyz="0 0 1" />
-    <dynamics
-      friction="0.4" />
+  <joint name="fl_joint" type="continuous">
+    <origin xyz="-0.0787 -0.032 0.03179" rpy="1.5708 0 -1.5708" />
+    <parent link="base_link" />
+    <child link="fl_link" />
+    <axis xyz="0 0 1" />
+    <dynamics friction="0.4" />
   </joint>
-  <link
-    name="br_link">
+
+  <link name="br_link">
     <inertial>
-      <origin
-        xyz="0 0 -0.00799999999999999"
-        rpy="0 0 0" />
-      <mass
-        value="0.0537442846179064" />
-      <inertia
-        ixx="2.10387038973688E-05"
-        ixy="-1.60642780418055E-21"
-        ixz="-3.28394518881952E-21"
-        iyy="2.10387038973688E-05"
-        iyz="1.10664150354249E-20"
-        izz="3.92583949923622E-05" />
+      <origin xyz="0 0 -0.008" rpy="0 0 0" />
+      <mass value="0.05374" />
+      <inertia ixx="2.1e-05" ixy="0" ixz="0" iyy="2.1e-05" iyz="0" izz="3.9e-05" />
     </inertial>
     <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://tk8/meshes/br_link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry><mesh filename="package://tk8/meshes/br_link.STL" /></geometry>
+      <material name=""><color rgba="0.79 0.82 0.93 1" /></material>
     </visual>
     <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://tk8/meshes/br_link.STL" />
-      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry><mesh filename="package://tk8/meshes/br_link.STL" /></geometry>
     </collision>
   </link>
-  <joint
-    name="br_joint"
-    type="continuous">
-    <origin
-      xyz="0.083303 -0.195 0.031791"
-      rpy="1.5708 0 1.5708" />
-    <parent
-      link="base_link" />
-    <child
-      link="br_link" />
-    <axis
-      xyz="0 0 -1" />
+  <joint name="br_joint" type="continuous">
+    <origin xyz="0.0833 -0.195 0.03179" rpy="1.5708 0 1.5708" />
+    <parent link="base_link" />
+    <child link="br_link" />
+    <axis xyz="0 0 -1" />
   </joint>
-  <link
-    name="bl_link">
+
+  <link name="bl_link">
     <inertial>
-      <origin
-        xyz="0 1.38777878078145E-17 0.00799999999999999"
-        rpy="0 0 0" />
-      <mass
-        value="0.0537442846179065" />
-      <inertia
-        ixx="2.10387038973688E-05"
-        ixy="-2.60648057527438E-26"
-        ixz="-1.50439790380108E-21"
-        iyy="2.10387038973688E-05"
-        iyz="8.71567729324998E-21"
-        izz="3.92583949923622E-05" />
+      <origin xyz="0 0 0.008" rpy="0 0 0" />
+      <mass value="0.05374" />
+      <inertia ixx="2.1e-05" ixy="0" ixz="0" iyy="2.1e-05" iyz="0" izz="3.9e-05" />
     </inertial>
     <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://tk8/meshes/bl_link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry><mesh filename="package://tk8/meshes/bl_link.STL" /></geometry>
+      <material name=""><color rgba="0.79 0.82 0.93 1" /></material>
     </visual>
     <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://tk8/meshes/bl_link.STL" />
-      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry><mesh filename="package://tk8/meshes/bl_link.STL" /></geometry>
     </collision>
   </link>
-  <joint
-    name="bl_joint"
-    type="continuous">
-    <origin
-      xyz="-0.078697 -0.195 0.031791"
-      rpy="1.5708 0 1.5708" />
-    <parent
-      link="base_link" />
-    <child
-      link="bl_link" />
-    <axis
-      xyz="0 0 -1" />
+  <joint name="bl_joint" type="continuous">
+    <origin xyz="-0.0787 -0.195 0.03179" rpy="1.5708 0 1.5708" />
+    <parent link="base_link" />
+    <child link="bl_link" />
+    <axis xyz="0 0 -1" />
   </joint>
 
   <transmission name="base_servo_transmission">
@@ -488,9 +214,7 @@
     <joint name="base_servo_joint">
       <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
-    <actuator name="base_servo_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
+    <actuator name="base_servo_motor"><mechanicalReduction>1</mechanicalReduction></actuator>
   </transmission>
 
   <transmission name="end_servo_transmission">
@@ -498,15 +222,13 @@
     <joint name="end_servo_joint">
       <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
-    <actuator name="end_servo_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
+    <actuator name="end_servo_motor"><mechanicalReduction>1</mechanicalReduction></actuator>
   </transmission>
 
   <!-- Camera Plugin -->
   <gazebo reference="camera_link">
     <sensor type="camera" name="camera1">
-      <pose>0 0 0 0 0 0</pose>  
+      <pose>0 0 0 3.14 -1.5787 0</pose>  
       <update_rate>30.0</update_rate>
       <camera name="head">
         <horizontal_fov>1.3962634</horizontal_fov>
@@ -576,17 +298,16 @@
     </sensor>
   </gazebo>
 
-  <gazebo>  <!-- Block 1 Start: Diff Drive -->
-    <plugin name="gazebo_ros_diff_drive" filename="libgazebo_ros_diff_drive.so">
+     <gazebo>
+    <plugin name="gazebo_ros_diff_drive_front" filename="libgazebo_ros_diff_drive.so">
       <commandTopic>cmd_vel</commandTopic>
-      <odometryTopic>odom</odometryTopic>
+      <odometryTopic>odom</odometryTopic>       
       <odometryFrame>odom</odometryFrame>
       <odometrySource>world</odometrySource>
-      <publishOdomTF>true</publishOdomTF>
+      <publishOdomTF>true</publishOdomTF>        
       <publishWheelTF>false</publishWheelTF>
-      <publishTf>true</publishTf>
-      <publishWheelJointState>true</publishWheelJointState>
-      <legacyMode>false</legacyMode>
+      <publishTf>true</publishTf>            
+      <publishWheelJointState>false</publishWheelJointState> 
       <updateRate>30</updateRate>
       <leftJoint>fl_joint</leftJoint>
       <rightJoint>fr_joint</rightJoint>
@@ -597,14 +318,41 @@
       <wheelTorque>10</wheelTorque>
       <rosDebugLevel>na</rosDebugLevel>
     </plugin>
-  </gazebo>  <!-- Block 1 End -->
+  </gazebo>
 
-  <!-- The extra closing tag that was here has been removed -->
+  <gazebo>
+    <plugin name="gazebo_ros_diff_drive_rear" filename="libgazebo_ros_diff_drive.so">
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryFrame>odom_rear_only</odometryFrame> 
+      <odometrySource>world</odometrySource>
+      <publishOdomTF>false</publishOdomTF>      
+      <publishWheelTF>false</publishWheelTF>
+      <publishTf>false</publishTf>           
+      <publishWheelJointState>false</publishWheelJointState> 
+      <legacyMode>false</legacyMode>
+      <updateRate>30</updateRate>
+      <leftJoint>bl_joint</leftJoint>
+      <rightJoint>br_joint</rightJoint>
+      <wheelSeparation>0.166</wheelSeparation> 
+      <wheelDiameter>0.07</wheelDiameter>   
+      <robotBaseFrame>base_link</robotBaseFrame>
+      <wheelAcceleration>1</wheelAcceleration>
+      <wheelTorque>10</wheelTorque>
+      <rosDebugLevel>na</rosDebugLevel>
+    </plugin>
+  </gazebo>
 
-  <gazebo>  <!-- Block 2 Start: ROS Control -->
+  <gazebo>
+    <plugin name="joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
+      <jointName>fl_joint, fr_joint, bl_joint, br_joint</jointName> 
+      <updateRate>30</updateRate>
+    </plugin>
+  </gazebo>
+
+  <gazebo>  
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
       <legacyModeNS>true</legacyModeNS>
     </plugin>
-  </gazebo>  <!-- Block 2 End -->
+  </gazebo> 
 </robot>
